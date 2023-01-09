@@ -79,12 +79,19 @@ local function update_range(bufnr, changes, tree, lang)
           local color_no_ = color_no(node, #colors, levels)
           local startRow, startCol, endRow, endCol = node:range() -- range of the capture, zero-indexed
           if vim.fn.has('nvim-0.7') == 1 then
-            vim.highlight.range(bufnr, nsid, ('rainbowcol' .. color_no_), { startRow, startCol }, { endRow, endCol - 1 }, {
+            vim.highlight.range(bufnr, nsid, ('rainbowcol' .. color_no_), { ---@diagnostic disable-line
+              startRow,
+              startCol,
+            }, {
+              endRow,
+              endCol - 1,
+            }, {
               regtype = 'b',
               inclusive = true,
               priority = 210,
             })
           else
+            ---@diagnostic disable
             vim.highlight.range(
               bufnr,
               nsid,
@@ -95,6 +102,7 @@ local function update_range(bufnr, changes, tree, lang)
               true,
               210
             )
+            ---@diagnostic enable
           end
         end
       end
@@ -165,6 +173,7 @@ M.defhl()
 --- @param lang string # Buffer language
 function M.attach(bufnr, lang)
   local config = configs.get_module('rainbow')
+  config = config or {}
   local max_file_lines = config.max_file_lines
   if max_file_lines ~= nil and vim.api.nvim_buf_line_count(bufnr) > max_file_lines then
     return
