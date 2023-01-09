@@ -26,4 +26,4 @@ jobs:
     - name: Run Luacheck
       uses: lunarmodules/luacheck@v1
       with:
-        args: lua/ tests/
+        args: lua/

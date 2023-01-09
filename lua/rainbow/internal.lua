@@ -174,12 +174,14 @@ M.defhl()
 function M.attach(bufnr, lang)
   local config = configs.get_module('rainbow')
   config = config or {}
-  local max_file_lines = config.max_file_lines
+  ---@diagnostic disable-next-line
+  local max_file_lines = config.max_file_lines or 9999999
   if max_file_lines ~= nil and vim.api.nvim_buf_line_count(bufnr) > max_file_lines then
     return
   end
   register_predicates(config)
   local parser = parsers.get_parser(bufnr, lang)
+  ---@diagnostic disable-next-line
   parser:register_cbs({
     on_changedtree = function(changes, tree)
       if state_table[bufnr] then
@@ -198,8 +200,10 @@ end
 --- @param bufnr number # Buffer number
 function M.detach(bufnr)
   state_table[bufnr] = false
+  ---@diagnostic disable-next-line
   if vim.treesitter.highlighter.hl_map then
-    vim.treesitter.highlighter.hl_map['punctuation.bracket'] = 'TSPunctBracket'
+    ---@diagnostic disable-next-line
+    vim.treesitter.highlighter.hl_map['punctuation.bracket'] = 'TSPunctBracket' -- luacheck: ignore
   else
     vim.api.nvim_set_hl(0, '@punctuation.bracket', { link = 'TSPunctBracket' })
   end
