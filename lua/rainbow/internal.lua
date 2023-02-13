@@ -114,6 +114,8 @@ end
 --- @param bufnr number # Buffer number
 local function full_update(bufnr)
   local parser = buffer_parsers[bufnr]
+  parser:invalidate(true)
+  parser:parse()
   parser:for_each_tree(function(tree, sub_parser)
     update_range(bufnr, { { tree:root():range() } }, tree, sub_parser:lang())
   end)
