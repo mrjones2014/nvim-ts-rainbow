@@ -72,7 +72,7 @@ local function update_range(bufnr, changes, tree, lang)
     local root_node = tree:root()
     local query = queries.get_query(lang, 'parens')
     local levels = require('rainbow.levels')[lang]
-    local capture_extmarks = api.nvim_buf_get_extmarks(bufnr, nsid, {change[1], 0}, {change[3] + 1, 0}, {})
+    local capture_extmarks = api.nvim_buf_get_extmarks(bufnr, nsid, { change[1], 0 }, { change[3] + 1, 0 }, {})
     for _, extmark in ipairs(capture_extmarks) do
       api.nvim_buf_del_extmark(bufnr, nsid, extmark[1])
     end
