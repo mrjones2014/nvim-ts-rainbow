@@ -1,6 +1,13 @@
 # 🌈 nvim-ts-rainbow 🌈
+
 Rainbow parentheses for neovim using tree-sitter.
-This is a module for [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), not a standalone plugin. It requires and is configured via nvim-treesitter
+This is a module for [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter), not a standalone plugin. It requires and is configured via nvim-treesitter.
+
+Here's a quick comparison for some Lua code:
+
+| Before                                                                                                          | After                                                                                                          |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| ![before](https://user-images.githubusercontent.com/8648891/220367278-256e916f-dd74-4c33-aea7-b127607a24e2.png) | ![after](https://user-images.githubusercontent.com/8648891/220367327-14d09039-a3f5-4a07-b6b9-35ff2d2b31f2.png) |
 
 Should work with any language supported by nvim-treesitter. If any language is missing, please open an issue/PR.
 
@@ -11,11 +18,13 @@ Only neovim nightly is targeted.
 The queries might be out of date at any time, keeping up with them for languages I don't use is not feasible. If you get errors like `invalid node at position xxx`, try removing this plugin first before opening an issue in nvim-treesitter. If it fixes the problem, open an issue/PR here.
 
 ## Installation and setup
+
 Install and set up nvim-treesitter according to their documentation. Install this plugin, then add a `rainbow` section in the [call to `require("nvim-treesitter.configs").setup()`](https://github.com/nvim-treesitter/nvim-treesitter#modules):
+
 ```lua
-require("nvim-treesitter.configs").setup {
+require('nvim-treesitter.configs').setup({
   highlight = {
-      -- ...
+    -- ...
   },
   -- ...
   rainbow = {
@@ -25,16 +34,18 @@ require("nvim-treesitter.configs").setup {
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
-  }
-}
+  },
+})
 ```
 
 If you want to enable it only for some filetypes and disable it for everything else, see https://github.com/p00f/nvim-ts-rainbow/issues/30#issuecomment-850991264
 
 ### Colours
+
 To change the colours you can set them in the setup:
+
 ```lua
-require'nvim-treesitter.configs'.setup{
+require('nvim-treesitter.configs').setup({
   rainbow = {
     -- Setting colors
     colors = {
@@ -43,30 +54,38 @@ require'nvim-treesitter.configs'.setup{
     -- Term colors
     termcolors = {
       -- Term colors here
-    }
+    },
   },
-}
+})
 ```
 
 If you want to override some colours (you can only change colours 1 through 7 this way), you can do it in your init.vim: (thanks @delphinus !). You can also use this while writing a colorscheme
+
 ```vim
 hi rainbowcol1 guifg=#123456
 ```
+
 ## Screenshots
- - Java
+
+- Java
 
 ![alt text](https://raw.githubusercontent.com/p00f/nvim-ts-rainbow/master/screenshots/java.png)
 
 The screenshots below use a different colorscheme
- - Fennel:
+
+- Fennel:
 
 ![alt text](https://raw.githubusercontent.com/p00f/nvim-ts-rainbow/master/screenshots/fnlwezterm.png)
 ![alt text](https://raw.githubusercontent.com/p00f/nvim-ts-rainbow/master/screenshots/fnltreesitter.png)
- - C++:
+
+- C++:
 
 ![alt text](https://raw.githubusercontent.com/p00f/nvim-ts-rainbow/master/screenshots/cpp.png)
- - Latex (with tag begin-end matching)
+
+- Latex (with tag begin-end matching)
 
 ![alt text](https://raw.githubusercontent.com/p00f/nvim-ts-rainbow/master/screenshots/latex_.png)
+
 ## Credits
-Huge thanks to @vigoux, @theHamsta, @sogaiu, @bfredl and @sunjon and @steelsojka for all their help
+
+Huge thanks to @vigoux, @theHamsta, @sogaiu, @bfredl and @sunjon and @steelsojka for all their help.
