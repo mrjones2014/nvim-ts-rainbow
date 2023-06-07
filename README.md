@@ -1,4 +1,4 @@
-> Note: This fork is more updated and more actively developed, consider using this instead: https://github.com/HiPhish/nvim-ts-rainbow2
+# Deprecated, use this instead: https://github.com/HiPhish/nvim-ts-rainbow2
 
 # 🌈 nvim-ts-rainbow 🌈
 
